@@ -27,5 +27,10 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: maven-settings-xml-action
+      uses: whelk-io/maven-settings-xml-action@v14
+      with:
+        servers: '[{ "id": "MuleRepository", "username": "${{secrets.NEXUS_USERNAME}}", "password": ""${{secrets.NEXUS_PASSWORD}}"" }]' 
+        repositories: '[{ "id": "MuleRepository", "name": "MuleRepository", "url": "https://repository.mulesoft.org/nexus-ee/content/repositories/releases-ee/", "layout": "default", "releases": { "enabled": "true" }, "snapshots": { "enabled": "true" } }]' 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
