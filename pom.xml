@@ -31,6 +31,14 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
+					<cloudHubDeployment>
+					    <uri>https://anypoint.mulesoft.com</uri>
+					    <muleVersion>${app.runtime}</muleVersion>
+					    <username>${anypoint.userName}</username>
+					    <password>${anypoint.password}</password>
+					    <applicationName>test-app</applicationName>
+					    <environment>Sandbox</environment>
+			    	</cloudHubDeployment>
 				</configuration>
 			</plugin>
 		<plugin>
@@ -56,22 +64,6 @@
                     </coverage>
                 </configuration>
             </plugin>
-            <plugin>
-			  <groupId>org.mule.tools.maven</groupId>
-			  <artifactId>mule-maven-plugin</artifactId>
-			  <version>3.4.2</version>
-			  <extensions>true</extensions>
-			  <configuration>
-			    <cloudHubDeployment>
-			      <uri>https://anypoint.mulesoft.com</uri>
-			      <muleVersion>${app.runtime}</muleVersion>
-			      <username>${anypoint.userName}</username>
-			      <password>${anypoint.password}</password>
-			      <applicationName>test-app</applicationName>
-			      <environment>Sandbox</environment>
-			    </cloudHubDeployment>
-			  </configuration>
-			</plugin>
         </plugins>
 	</build>
 
