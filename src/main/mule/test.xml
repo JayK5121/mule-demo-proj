@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:commerce-cloud-dataapi="http://www.mulesoft.org/schema/mule/commerce-cloud-dataapi"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/commerce-cloud-dataapi http://www.mulesoft.org/schema/mule/commerce-cloud-dataapi/current/mule-commerce-cloud-dataapi.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="eeb72396-ca11-4903-ab40-66d73d024def" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="testFlow" doc:id="f00d3711-bd05-4e2a-902a-e635cdb36a7a" >
+		<http:listener doc:name="Listener" doc:id="a608e873-9369-4e09-ba5e-ab83f35700f7" config-ref="HTTP_Listener_config" path="/sayHello" allowedMethods="GET"/>
+		<ee:transform doc:name="Transform Message" doc:id="fb6b6838-b3c1-4428-9259-d1ebbc90b4be" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	msg: "hello"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
